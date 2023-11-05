@@ -1,6 +1,6 @@
 # Fractal-Generator-Project
 This is a fractal generator program written in Python
-> Following libraries
+> Following libraries used includes
 ```
 tkiner (This is for GUI)
 PIL (This is for drawing the fractals)
