@@ -1,11 +1,11 @@
 # Fractal-Generator-Project
 This is a fractal generator program written in Python
-> Following libraries used includes
+> The Following libraries used include
 ```
 tkiner (This is for GUI)
 PIL (This is for drawing the fractals)
 ```
-## This is how one of the Mandlebrot looks like with the following inputs
+## This is how one of the Mandelbrot looks like with the following inputs
 ```
 Width: 800
 Height: 800
