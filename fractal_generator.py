@@ -23,9 +23,17 @@ def generate_mandelbrot():
             re = RE_START + (x / WIDTH) * (RE_END - RE_START)
             im = IM_START + (y / HEIGHT) * (IM_END - IM_START)
             c = complex(re, im)
-            color = mandelbrot(c)
-            r, g, b = color % 8 * 32, color % 16 * 16, color % 32 * 8
-            draw.point((x, y), (r, g, b))
+            color = mandelbrot(c) 
+
+            if color == 256:
+                draw.point((x, y), (255, 255, 255))  # White for boundary points
+            elif color < 256:
+                draw.point((x, y), (0, 0, 255))  # Blue for points inside the Mandelbrot set
+            else:
+                draw.point((x, y), (0, 0, 0))  # Black for points outside the Mandelbrot set
+            
+    img.save('mandelbrot.png')
+    img.show()
     img.save('mandelbrot.png')
     img.show()
 
