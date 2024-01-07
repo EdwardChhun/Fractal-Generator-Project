@@ -24,63 +24,81 @@ def generate_mandelbrot():
             re = RE_START + (x / WIDTH) * (RE_END - RE_START)
             im = IM_START + (y / HEIGHT) * (IM_END - IM_START)
             c = complex(re, im)
-            color = mandelbrot(c)
-            # Might change the r/g/b into constants for easier access
-            r, g, b = color % 8 * 32, color % 16 * 16, color % 32 * 8
-            draw.point((x, y), (r, g, b))
+            color = mandelbrot(c) 
+
+            if color == 256:
+                draw.point((x, y), (255, 255, 255))  # White for boundary points
+            elif color < 256:
+                draw.point((x, y), (0, 0, 255))  # Blue for points inside the Mandelbrot set
+            else:
+                draw.point((x, y), (0, 0, 0))  # Black for points outside the Mandelbrot set
+            
+    img.save('mandelbrot.png')
+    img.show()
     img.save('mandelbrot.png')
     img.show()
 
-def set_parameters():
-    global WIDTH, HEIGHT, MAX_ITER, RE_START, RE_END, IM_START, IM_END
-    WIDTH = int(width_entry.get())
-    HEIGHT = int(height_entry.get())
-    MAX_ITER = int(max_iter_entry.get())
-    RE_START = float(re_start_entry.get())
-    RE_END = float(re_end_entry.get())
-    IM_START = float(im_start_entry.get())
-    IM_END = float(im_end_entry.get())
+def main():
+    def set_parameters():
+        global WIDTH, HEIGHT, MAX_ITER, RE_START, RE_END, IM_START, IM_END
+        WIDTH = int(width_entry.get())
+        HEIGHT = int(height_entry.get())
+        MAX_ITER = int(max_iter_entry.get())
+        RE_START = float(re_start_entry.get())
+        RE_END = float(re_end_entry.get())
+        IM_START = float(im_start_entry.get())
+        IM_END = float(im_end_entry.get())
 
-root = tk.Tk()
-root.title("Mandelbrot Fractal Generator")
+    root = tk.Tk()
 
-# Create GUI menu for changing parameters
-width_label = tk.Label(root, text="Width:")
-width_label.pack()
-width_entry = tk.Entry(root)
-width_entry.pack()
+    root.title("Mandelbrot Fractal Generator")
 
-height_label = tk.Label(root, text="Height:")
-height_label.pack()
-height_entry = tk.Entry(root)
-height_entry.pack()
+    # Set a fixed starting width and height
+    start_width = 300
+    start_height = 350
+    root.geometry(f"{start_width}x{start_height}")
 
-max_iter_label = tk.Label(root, text="Max Iterations:")
-max_iter_label.pack()
-max_iter_entry = tk.Entry(root)
-max_iter_entry.pack()
+    # Create GUI menu for changing parameters
+    width_label = tk.Label(root, text="Width:")
+    width_label.pack()
+    width_entry = tk.Entry(root)
+    width_entry.pack()
 
-re_start_label = tk.Label(root, text="Real Start:")
-re_start_label.pack()
-re_start_entry = tk.Entry(root)
-re_start_entry.pack()
+    height_label = tk.Label(root, text="Height:")
+    height_label.pack()
+    height_entry = tk.Entry(root)
+    height_entry.pack()
 
-re_end_label = tk.Label(root, text="Real End:")
-re_end_label.pack()
-re_end_entry = tk.Entry(root)
-re_end_entry.pack()
+    max_iter_label = tk.Label(root, text="Max Iterations:")
+    max_iter_label.pack()
+    max_iter_entry = tk.Entry(root)
+    max_iter_entry.pack()
 
-im_start_label = tk.Label(root, text="Imaginary Start:")
-im_start_label.pack()
-im_start_entry = tk.Entry(root)
-im_start_entry.pack()
+    re_start_label = tk.Label(root, text="Real Start:")
+    re_start_label.pack()
+    re_start_entry = tk.Entry(root)
+    re_start_entry.pack()
 
-im_end_label = tk.Label(root, text="Imaginary End:")
-im_end_label.pack()
-im_end_entry = tk.Entry(root)
-im_end_entry.pack()
+    re_end_label = tk.Label(root, text="Real End:")
+    re_end_label.pack()
+    re_end_entry = tk.Entry(root)
+    re_end_entry.pack()
 
-generate_button = tk.Button(root, text="Generate Mandelbrot", command=lambda: [set_parameters(), generate_mandelbrot()])
-generate_button.pack()
+    im_start_label = tk.Label(root, text="Imaginary Start:")
+    im_start_label.pack()
+    im_start_entry = tk.Entry(root)
+    im_start_entry.pack()
 
-root.mainloop()
+    im_end_label = tk.Label(root, text="Imaginary End:")
+    im_end_label.pack()
+    im_end_entry = tk.Entry(root)
+    im_end_entry.pack()
+
+    generate_button = tk.Button(root, text="Generate Mandelbrot", command=lambda: [set_parameters(), generate_mandelbrot()])
+    generate_button.pack()
+
+    # Running the main loop for widgets
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
