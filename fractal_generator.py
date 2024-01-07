@@ -1,3 +1,12 @@
+# Description: Fractal generator
+# Extra features to add:
+# 1. Color setter
+# 2. The arguments in the interface might be hard to users to understand,
+#    maybe create hollow numbers for the interface so users can just press
+#    on generate mandelbrot to create the famous one. 
+# 3. Make the madelbrot with higher resolutionm 
+
+
 import tkinter as tk
 from PIL import Image, ImageDraw
 
