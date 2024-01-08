@@ -1,4 +1,6 @@
-# Description: Fractal generator
+# Description   : Fractal generator
+# Author        : Edward Chhun
+
 # Extra features to add:
 # 1. Color setter
 # 2. The arguments in the interface might be hard to users to understand,
